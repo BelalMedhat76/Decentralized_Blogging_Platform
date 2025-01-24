@@ -18,15 +18,15 @@ export default function AllBlogsPage() {
       }
 
       const data = await response.json();
-
       if (data.success) {
         setBlogs(data.blogs);
-        setError(null);
       } else {
-        throw new Error("Unable to fetch blogs at the moment.");
+        setError("Failed to fetch blogs.");
       }
     } catch (error) {
-      setError(error.message || "An unexpected error occurred.");
+      setError("An error occurred while fetching blogs.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -91,3 +91,4 @@ export default function AllBlogsPage() {
     </div>
   );
 }
+
